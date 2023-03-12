@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="match-form-container">
+  <%= simple_form_for [@map, @hero, @match] do |f| %>
+    <%= f.input :hero, :collection => @heroes %>
+    <%= f.input :map, :collection => @maps %>
+    <%= f.input :win, :collection => [true, false] %>
+    <%= f.submit "Add a new match", class: "submit", id: "add_match_button" %>
+  <% end %>
+</div>
