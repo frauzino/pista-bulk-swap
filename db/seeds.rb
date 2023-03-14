@@ -24,7 +24,7 @@ User.create(
   password: "Pistadev"
 )
 
-10.times do
+20.times do
   Subscription.create(
     customer_email: emails.sample,
     product_title: products.sample,
