@@ -1,28 +1,30 @@
-<div class="home container">
-  <div class="form-container">
-    <%= form_with url: "/search", method: :get do |form| %>
-      <%= form.label :search_product, "Search for:" %>
-      <%= form.text_field :search_product %>
-      <%= form.submit "Search" %>
-    <% end %>
-  </div>
-  <div class="form-container">
-    <%= form_with url: "/replace", method: :get do |form| %>
-      <%= form.label :old_product, " Old Product:" %>
-      <%= form.text_field :old_product %>
-      <%= form.label :new_product, " New Product:" %>
-      <%= form.text_field :new_product %>
-      <%= form.submit "Swap" %>
-    <% end %>
-  </div>
-  <div class="test container", style="display: flex;">
-    <div style="display: flex; flex-direction: column;">
-      <h4>Subscriptions to alter</h4>
+<h1>Bulk Swap Tool</h1>
+<div class="home-container">
+  <div class="function-container">
+    <div class="form-container">
+      <h4>Search</h4>
+      <%= form_with url: "/search", method: :get do |form| %>
+        <%= form.text_field :search_product, placeholder: "Search" %>
+        <%= form.submit "Search" %>
+      <% end %>
+    </div>
+    <div class="subs-list">
+      <h4>Subscriptions</h4>
       <% @subscriptions.each do |sub| %>
         <span><%= "#{sub.customer_email} | #{sub.product_title} | #{sub.variant_title}" %></span>
       <% end %>
     </div>
-    <div style="display: flex; flex-direction: column;">
+  </div>
+  <div class="function-container">
+    <div class="form-container">
+      <h4>Swap</h4>
+      <%= form_with url: "/replace", method: :get do |form| %>
+        <%= form.text_field :old_product, placeholder: "Old Product" %>
+        <%= form.text_field :new_product, placeholder: "New Product" %>
+        <%= form.submit "Swap" %>
+      <% end %>
+    </div>
+    <div class="subs-list">
       <h4>Subscriptions after change</h4>
       <% if @new_subscriptions != nil %>
         <% @new_subscriptions.each do |sub| %>
